@@ -8,9 +8,18 @@ const switchTeameRef = document.querySelector('#theme-switch-toggle');
 
 menuRecipeRef.insertAdjacentHTML('afterbegin', markup);
 
-function changeThemeFn() {
+console.log(switchTeameRef.checked);
+
+function changeThemeFn(event) {
+  console.log(event.target);
   document.body.classList.toggle('dark-theme');
   localStorage.setItem('theme', document.body.className);
+  localStorage.setItem('checkBoxStatus', event.target.checked);
+}
+
+function setCheckBoxValue() {
+  switchTeameRef.checked = JSON.parse(localStorage.getItem('checkBoxStatus'));
+  console.log(switchTeameRef.checked);
 }
 
 function setSavedTheme() {
@@ -19,3 +28,4 @@ function setSavedTheme() {
 
 switchTeameRef.addEventListener('change', changeThemeFn);
 setSavedTheme();
+setCheckBoxValue();
